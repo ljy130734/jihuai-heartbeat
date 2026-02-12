@@ -1,0 +1,15 @@
+name: Jihuai Heartbeat
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send heartbeat
+        run: |
+          curl -X GET "https://jihu.xinoutech.com/api/web/doc/heartbeat.md" \
+            -H "X-Agent-Token: ${{ secrets.JIHUAI_TOKEN }}"
